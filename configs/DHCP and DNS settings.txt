@@ -1,0 +1,51 @@
+DHCP + DNS SERVER CONFIGURATION - Enterprise Network Lab
+Author: Mduduzi Masango
+
+----------------------------------------
+Server IP & Placement
+----------------------------------------
+Static IP:      10.0.10.100  
+Subnet Mask:    255.255.255.0  
+Gateway:        10.0.10.1  
+DNS Server:     10.0.10.100  
+Connected to:   VLAN 10 (Admin)
+
+----------------------------------------
+DHCP Pools
+----------------------------------------
+
+# VLAN 10 - Admin
+Pool Name: VLAN10_Admin
+Network: 10.0.10.0/24
+Default Gateway: 10.0.10.1
+DNS Server: 10.0.10.100
+Range: 10.0.10.50 to 10.0.10.200
+
+# VLAN 20 - Sales
+Pool Name: VLAN20_Sales
+Network: 10.0.20.0/24
+Default Gateway: 10.0.20.1
+DNS Server: 10.0.10.100
+Range: 10.0.20.50 to 10.0.20.200
+
+# VLAN 30 - Guest
+Pool Name: VLAN30_Guest
+Network: 10.0.30.0/24
+Default Gateway: 10.0.30.1
+DNS Server: 10.0.10.100
+Range: 10.0.30.50 to 10.0.30.200
+
+------------------------------------------------------------------
+🧠 DNS Records (Local Zone: enterprise.local)
+------------------------------------------------------------------
+Record Type | Hostname      | IP Address
+-----------|---------------|---------------
+A            | fileserver | 10.0.10.100
+----------------------------------------
+Notes
+----------------------------------------
+- DHCP relay configured on router (ip helper-address 10.0.10.100)
+- DNS configured to resolve internal hostnames (enterprise.local)
+- Time server (optional): NTP 10.0.10.100
+- Dynamic leases confirmed using ipconfig (Windows) and dhclient (Linux)
+

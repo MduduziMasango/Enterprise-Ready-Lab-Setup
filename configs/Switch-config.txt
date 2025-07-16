@@ -1,0 +1,55 @@
+SWITCH CONFIGURATION - Enterprise Network Lab
+Author: Mduduzi Masango
+
+------------------------------
+VLAN Configuration
+------------------------------
+vlan 10
+ name Admin
+vlan 20
+ name Sales
+vlan 30
+ name Guest
+exit
+
+--------------------------------------------
+Assign Access Ports to VLANs
+--------------------------------------------
+interface fa0/1
+ switchport mode access
+ switchport access vlan 10
+exit
+
+interface fa0/2
+ switchport mode access
+ switchport access vlan 20
+exit
+
+interface fa0/3
+ switchport mode access
+ switchport access vlan 30
+exit
+
+interface fa0/4
+ switchport mode access
+ switchport access vlan 10
+exit
+
+------------------------------
+Trunk Port to Router
+------------------------------
+interface fa0/24
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+exit
+
+---------------------------------------------------------------------
+Optional: Set Hostname and Disable Unused Ports
+---------------------------------------------------------------------
+hostname Switch-Access
+
+Disable unused ports (example: fa0/5 to fa0/10)
+interface range fa0/5 - 10
+ shutdown
+exit
+
